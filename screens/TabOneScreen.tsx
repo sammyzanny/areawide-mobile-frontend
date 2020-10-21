@@ -5,11 +5,49 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 export default function TabOneScreen() {
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleOnSubmit = event => {
+    event.preventDefault();
+    const reqObj = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            user: this.state
+        })
+    }
+    fetch('https://animal-swapping-api.herokuapp.com/auth', reqObj)
+        .then(response => response.json())
+        .then(data =>  {
+            if (data.message) {
+                alert(data.message)
+              } else {
+                  localStorage.setItem("token", data.jwt)
+                this.props.login(data.user)
+                this.props.history.push('/')
+              }
+            
+        });
+    setUsername("");
+    setPassword("");
+  }
+
+  const signUpRedirect = () => {
+
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Login</Text>
+      <form onSubmit={handleOnSubmit}>
+        <input name="username" placeholder="Username/Email" type="text" onChange={event => setUsername(event.target.value)}></input>
+        <input name="password" placeholder="Password" type="text" onChange={event => setUsername(event.target.value)}></input>
+        <button type="submit">Login</button>
+      </form>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.js" />
+      <button onClick={signUpRedirect} >Sign Up</button>
     </View>
   );
 }
