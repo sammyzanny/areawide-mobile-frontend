@@ -19,22 +19,20 @@ export default function BottomTabNavigator() {
       initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="Login"
         component={TabOneNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
+    
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="SignUp"
         component={TabTwoNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
       />
     </BottomTab.Navigator>
   );
 }
+//   options={{
+//  tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+// }}
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
@@ -52,7 +50,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'Login' }}
       />
     </TabOneStack.Navigator>
   );
@@ -66,7 +64,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Sign Up' }}
       />
     </TabTwoStack.Navigator>
   );
