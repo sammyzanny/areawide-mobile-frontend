@@ -8,8 +8,8 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleOnSubmit = e => {
-    e.preventDefault();
+  const handleOnSubmit = () => {
+
     const reqObj = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -18,6 +18,7 @@ export default function Login() {
             password
         })
     }
+    
     
     setUsername("");
     setPassword("");
@@ -28,8 +29,8 @@ export default function Login() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-        <TextInput placeholder="Username"  onChange={e => setUsername(e.target.value)} ></TextInput>
-        <TextInput  placeholder="Password" onChange={e => setPassword(e.target.value)}></TextInput>
+        <TextInput placeholder="Username" value={username} onChangeText={setUsername} ></TextInput>
+        <TextInput placeholder="Password" value={password} onChangeText={setPassword}></TextInput>
         <Button title="submit" onPress={handleOnSubmit}>Login</Button>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>

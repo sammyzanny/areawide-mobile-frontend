@@ -16,8 +16,7 @@ export default function SignUp() {
 
 
 
-  const handleOnSubmit = e => {
-    e.preventDefault();
+  const handleOnSubmit = () => {
     const reqObj = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -40,9 +39,8 @@ export default function SignUp() {
         setCity("");
         setPhone("");
     } else {
-        alert("Passwords do not match")
+        alert("Passwords do not match");
         setConfirmPassword("");
-
     }
     
 
@@ -53,13 +51,13 @@ export default function SignUp() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-        <TextInput placeholder="Username"  onChange={e => setUsername(e.target.value)} ></TextInput>
-        <TextInput  placeholder="Password" onChange={e => setPassword(e.target.value)}></TextInput>
-        <TextInput  placeholder="Confirm Password" onChange={e => setConfirmPassword(e.target.value)}></TextInput>
-        <TextInput  placeholder="Name" onChange={e => setName(e.target.value)}></TextInput>
-        <TextInput  placeholder="Email" onChange={e => setEmail(e.target.value)}></TextInput>
-        <TextInput  placeholder="City" onChange={e => setCity(e.target.value)}></TextInput>
-        <TextInput  placeholder="Phone Number" onChange={e => setPhone(e.target.value)}></TextInput>
+        <TextInput value={username} placeholder="Username" style={styles.input} onChangeText={setUsername} ></TextInput>
+        <TextInput value={password} placeholder="Password" style={styles.input} onChangeText={setPassword} secureTextEntry={true} ></TextInput>
+        <TextInput value={confirmPassword} placeholder="Confirm Password" style={styles.input} onChangeText={setConfirmPassword} secureTextEntry={true}></TextInput>
+        <TextInput value={name} placeholder="Name" style={styles.input} onChangeText={setName}></TextInput>
+        <TextInput value={email} placeholder="Email" style={styles.input} onChangeText={setEmail}></TextInput>
+        <TextInput value={city} placeholder="City" style={styles.input} onChangeText={setCity}></TextInput>
+        <TextInput value={phone} placeholder="Phone Number" style={styles.input} onChangeText={setPhone}></TextInput>
         <Button title="Register" onPress={handleOnSubmit}></Button>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>
@@ -81,4 +79,9 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  input: { 
+      height: 40, 
+      borderColor: 'gray', 
+      borderWidth: 1, 
+    },
 });
