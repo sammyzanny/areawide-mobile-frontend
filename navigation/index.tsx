@@ -15,7 +15,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
+      {user ? <LoggedInNavigator /> : <RootNavigator />}
     </NavigationContainer>
   );
 }
@@ -24,8 +24,23 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 // Read more here: https://reactnavigation.org/docs/modal
 const Stack = createStackNavigator<RootStackParamList>();
 
+// function NavigationChoice() {
+//   if(!user){
+//     return <RootNavigator />
+//   } else if (user.admin){
+//     return <AdminNavigator />
+//   } else {
+//    return <LoggedInNavigator /> 
+//   }
+// }
+
+
+
 function LoggedInNavigator() {
-  
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Root" component={BottomTabNavigatorLI} />
+      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+    </Stack.Navigator>
 }
 
 function RootNavigator() {
